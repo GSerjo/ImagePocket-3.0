@@ -8,10 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
+    private var openMenuButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureToolbar()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -19,7 +24,20 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    private func configureToolbar(){
 
+        openMenuButton = MMDrawerBarButtonItem(target: self, action: #selector(onOpenMenuClicked))
+        navigationItem.leftBarButtonItem = openMenuButton
 
+    }
+    
+    @objc private func onOpenMenuClicked(){
+        print("onOpenMenuClicked")
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.centerContainer.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
 }
 
