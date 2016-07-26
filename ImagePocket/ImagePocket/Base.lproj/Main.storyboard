@@ -19,8 +19,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Red-qQ-3Gw">
-                        <barButtonItem key="rightBarButtonItem" title="Select" id="3VF-62-MyQ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Select" id="3VF-62-MyQ">
+                            <connections>
+                                <action selector="onSelectClicked:" destination="BYZ-38-t0r" id="b6I-wP-j93"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="seletImageButton" destination="3VF-62-MyQ" id="ZSg-hD-wJi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
