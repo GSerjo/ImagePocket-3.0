@@ -12,6 +12,7 @@
 		B21F816A1D45C21E008E764C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21F81681D45C21E008E764C /* Main.storyboard */; };
 		B21F816C1D45C21E008E764C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21F816B1D45C21E008E764C /* Assets.xcassets */; };
 		B21F816F1D45C21E008E764C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21F816D1D45C21E008E764C /* LaunchScreen.storyboard */; };
+		B220A1C61D4C65EE00061874 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B220A1C51D4C65EE00061874 /* SQLite.framework */; };
 		B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27003231D46E20A00B3D70C /* LeftSideViewController.swift */; };
 		B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003271D46E26A00B3D70C /* MMDrawerBarButtonItem.m */; };
 		B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003291D46E26A00B3D70C /* MMDrawerController.m */; };
@@ -27,6 +28,8 @@
 		B21F816B1D45C21E008E764C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B21F816E1D45C21E008E764C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B21F81701D45C21E008E764C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B220A1AD1D4C657800061874 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "/Users/Serjo/Downloads/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<absolute>"; };
+		B220A1C51D4C65EE00061874 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "../../../../Users/Serjo/Downloads/SQLite.swift-master/build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
 		B27003231D46E20A00B3D70C /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
 		B27003251D46E26900B3D70C /* ImagePocket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagePocket-Bridging-Header.h"; sourceTree = "<group>"; };
 		B27003261D46E26A00B3D70C /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B220A1C61D4C65EE00061874 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +58,10 @@
 		B21F81581D45C21D008E764C = {
 			isa = PBXGroup;
 			children = (
+				B220A1C51D4C65EE00061874 /* SQLite.framework */,
 				B21F81631D45C21E008E764C /* ImagePocket */,
 				B21F81621D45C21E008E764C /* Products */,
+				B220A1AD1D4C657800061874 /* SQLite.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
