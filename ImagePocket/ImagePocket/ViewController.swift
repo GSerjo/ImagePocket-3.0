@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SQLite
 
 final class ViewController: UIViewController {
 
