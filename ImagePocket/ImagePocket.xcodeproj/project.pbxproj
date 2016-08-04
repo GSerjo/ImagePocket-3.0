@@ -14,6 +14,9 @@
 		B21F816F1D45C21E008E764C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21F816D1D45C21E008E764C /* LaunchScreen.storyboard */; };
 		B22128811D52C433002D854F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B221286E1D52C400002D854F /* SQLite.framework */; };
 		B22128821D52C433002D854F /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B221286E1D52C400002D854F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B22128891D52C7E2002D854F /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22128881D52C7E2002D854F /* DataStore.swift */; };
+		B221288B1D52CBBB002D854F /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221288A1D52CBBB002D854F /* ImageRepository.swift */; };
+		B221288E1D52CE47002D854F /* DataAccessError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221288D1D52CE47002D854F /* DataAccessError.swift */; };
 		B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27003231D46E20A00B3D70C /* LeftSideViewController.swift */; };
 		B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003271D46E26A00B3D70C /* MMDrawerBarButtonItem.m */; };
 		B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003291D46E26A00B3D70C /* MMDrawerController.m */; };
@@ -103,6 +106,9 @@
 		B21F816E1D45C21E008E764C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B21F81701D45C21E008E764C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B22128631D52C3FF002D854F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = SQLite.swift/SQLite.xcodeproj; sourceTree = "<group>"; };
+		B22128881D52C7E2002D854F /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		B221288A1D52CBBB002D854F /* ImageRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
+		B221288D1D52CE47002D854F /* DataAccessError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessError.swift; sourceTree = "<group>"; };
 		B27003231D46E20A00B3D70C /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
 		B27003251D46E26900B3D70C /* ImagePocket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagePocket-Bridging-Header.h"; sourceTree = "<group>"; };
 		B27003261D46E26A00B3D70C /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 		B21F81581D45C21D008E764C = {
 			isa = PBXGroup;
 			children = (
+				B22128861D52C5A1002D854F /* Domain */,
 				B21F81631D45C21E008E764C /* ImagePocket */,
 				B21F81621D45C21E008E764C /* Products */,
 				B22128631D52C3FF002D854F /* SQLite.xcodeproj */,
@@ -171,6 +178,24 @@
 				B221287A1D52C400002D854F /* SQLite.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B22128861D52C5A1002D854F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				B22128871D52C5E7002D854F /* Repositories */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		B22128871D52C5E7002D854F /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				B22128881D52C7E2002D854F /* DataStore.swift */,
+				B221288A1D52CBBB002D854F /* ImageRepository.swift */,
+				B221288D1D52CE47002D854F /* DataAccessError.swift */,
+			);
+			name = Repositories;
 			sourceTree = "<group>";
 		};
 		B27003221D46E16E00B3D70C /* SideMenu */ = {
@@ -332,11 +357,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27003311D46E26A00B3D70C /* MMDrawerVisualState.m in Sources */,
+				B22128891D52C7E2002D854F /* DataStore.swift in Sources */,
 				B21F81671D45C21E008E764C /* ViewController.swift in Sources */,
 				B27003321D46E26A00B3D70C /* UIViewController+MMDrawerController.m in Sources */,
+				B221288E1D52CE47002D854F /* DataAccessError.swift in Sources */,
 				B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */,
 				B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */,
 				B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */,
+				B221288B1D52CBBB002D854F /* ImageRepository.swift in Sources */,
 				B21F81651D45C21E008E764C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
