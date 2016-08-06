@@ -16,6 +16,8 @@ final class ViewController: UIViewController {
     private var openMenuButton: UIBarButtonItem!
     
     @IBOutlet weak var seletImageButton: UIBarButtonItem!
+    @IBOutlet weak var shareImageButton: UIBarButtonItem!
+    @IBOutlet weak var removeImageButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
