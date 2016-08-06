@@ -20,7 +20,7 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = rootTitle
-        
+        try! ImageRepository.createTable()
         configureToolbar()
     }
     

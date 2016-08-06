@@ -12,7 +12,7 @@ import SQLite
 final class DataStore {
     static let sharedInstance = DataStore()
     
-    let connection: Connection?
+    private let connection: Connection?
     
     private init(){
         var path = "NeliburImagePocketDB.sqlite"
@@ -28,5 +28,12 @@ final class DataStore {
         } catch _ {
             connection = nil
         }
+    }
+    
+    func executeQuery(query: String) throws {
+        guard let connection =  self.connection else {
+            throw DataAccessError.ConnectionError
+        }
+        try connection.run(query)
     }
 }

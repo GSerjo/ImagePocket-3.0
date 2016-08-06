@@ -17,6 +17,7 @@
 		B22128891D52C7E2002D854F /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22128881D52C7E2002D854F /* DataStore.swift */; };
 		B221288B1D52CBBB002D854F /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221288A1D52CBBB002D854F /* ImageRepository.swift */; };
 		B221288E1D52CE47002D854F /* DataAccessError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221288D1D52CE47002D854F /* DataAccessError.swift */; };
+		B22128961D556416002D854F /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22128951D556416002D854F /* TagRepository.swift */; };
 		B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27003231D46E20A00B3D70C /* LeftSideViewController.swift */; };
 		B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003271D46E26A00B3D70C /* MMDrawerBarButtonItem.m */; };
 		B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003291D46E26A00B3D70C /* MMDrawerController.m */; };
@@ -109,6 +110,7 @@
 		B22128881D52C7E2002D854F /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		B221288A1D52CBBB002D854F /* ImageRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		B221288D1D52CE47002D854F /* DataAccessError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessError.swift; sourceTree = "<group>"; };
+		B22128951D556416002D854F /* TagRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		B27003231D46E20A00B3D70C /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
 		B27003251D46E26900B3D70C /* ImagePocket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagePocket-Bridging-Header.h"; sourceTree = "<group>"; };
 		B27003261D46E26A00B3D70C /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				B22128881D52C7E2002D854F /* DataStore.swift */,
 				B221288A1D52CBBB002D854F /* ImageRepository.swift */,
 				B221288D1D52CE47002D854F /* DataAccessError.swift */,
+				B22128951D556416002D854F /* TagRepository.swift */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				B21F81671D45C21E008E764C /* ViewController.swift in Sources */,
 				B27003321D46E26A00B3D70C /* UIViewController+MMDrawerController.m in Sources */,
 				B221288E1D52CE47002D854F /* DataAccessError.swift in Sources */,
+				B22128961D556416002D854F /* TagRepository.swift in Sources */,
 				B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */,
 				B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */,
 				B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */,
