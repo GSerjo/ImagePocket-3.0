@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 final class ViewController: UIViewController {
 
@@ -20,8 +21,15 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = rootTitle
-        try! ImageRepository.createTable()
         configureToolbar()
+        try! DataStore.sharedInstance.createTables()
+        
+        if(PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.Authorized){
+            startApp()
+        }
+        else {
+            PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+        }
     }
     
     @IBAction func onSelectClicked(sender: UIBarButtonItem) {
@@ -42,6 +50,13 @@ final class ViewController: UIViewController {
     @objc private func onOpenMenuClicked(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    }
+    
+    private func requestAuthorizationHandler(status: PHAuthorizationStatus) {
+    }
+    
+    private func startApp() {
+        
     }
 }
 

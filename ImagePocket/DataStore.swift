@@ -36,4 +36,9 @@ final class DataStore {
         }
         try connection.run(query)
     }
+    
+    func createTables() throws{
+        try ImageRepository.createTable()
+        try TagRepository.createTable()
+    }
 }
