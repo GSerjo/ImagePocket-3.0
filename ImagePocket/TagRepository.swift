@@ -18,14 +18,18 @@ final class TagRepository {
         
         let tableQuery = table.create(ifNotExists: true){ t in
             t.column(Columns.id, primaryKey: true)
+            t.column(Columns.name)
         }
         
-        try DataStore.sharedInstance.executeQuery(tableQuery)
+        let indexQuery = table.createIndex([Columns.name], ifNotExists: true)
         
+        try DataStore.sharedInstance.executeQuery(tableQuery)
+        try DataStore.sharedInstance.executeQuery(indexQuery)
     }
     
     
     private struct Columns {
         static let id = Expression<Int64>("id")
+        static let name = Expression<String>("name")
     }    
 }

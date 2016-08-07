@@ -19,6 +19,9 @@
 		B221288E1D52CE47002D854F /* DataAccessError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B221288D1D52CE47002D854F /* DataAccessError.swift */; };
 		B22128961D556416002D854F /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22128951D556416002D854F /* TagRepository.swift */; };
 		B2320C011D57A56F00EF28AA /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C001D57A56F00EF28AA /* CHTCollectionViewWaterfallLayout.swift */; };
+		B2320C041D57AFC800EF28AA /* ImageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C031D57AFC800EF28AA /* ImageEntity.swift */; };
+		B2320C061D57B02700EF28AA /* TagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C051D57B02700EF28AA /* TagEntity.swift */; };
+		B2320C091D57B36300EF28AA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C081D57B36300EF28AA /* StringExtensions.swift */; };
 		B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27003231D46E20A00B3D70C /* LeftSideViewController.swift */; };
 		B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003271D46E26A00B3D70C /* MMDrawerBarButtonItem.m */; };
 		B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003291D46E26A00B3D70C /* MMDrawerController.m */; };
@@ -113,6 +116,9 @@
 		B221288D1D52CE47002D854F /* DataAccessError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccessError.swift; sourceTree = "<group>"; };
 		B22128951D556416002D854F /* TagRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		B2320C001D57A56F00EF28AA /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CHTCollectionViewWaterfallLayout.swift; path = CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.swift; sourceTree = SOURCE_ROOT; };
+		B2320C031D57AFC800EF28AA /* ImageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntity.swift; sourceTree = "<group>"; };
+		B2320C051D57B02700EF28AA /* TagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntity.swift; sourceTree = "<group>"; };
+		B2320C081D57B36300EF28AA /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		B27003231D46E20A00B3D70C /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
 		B27003251D46E26900B3D70C /* ImagePocket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagePocket-Bridging-Header.h"; sourceTree = "<group>"; };
 		B27003261D46E26A00B3D70C /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
@@ -141,7 +147,7 @@
 		B21F81581D45C21D008E764C = {
 			isa = PBXGroup;
 			children = (
-				B22128861D52C5A1002D854F /* Domain */,
+				B2320C071D57B33C00EF28AA /* Core */,
 				B21F81631D45C21E008E764C /* ImagePocket */,
 				B21F81621D45C21E008E764C /* Products */,
 				B22128631D52C3FF002D854F /* SQLite.xcodeproj */,
@@ -159,6 +165,7 @@
 		B21F81631D45C21E008E764C /* ImagePocket */ = {
 			isa = PBXGroup;
 			children = (
+				B22128861D52C5A1002D854F /* Domain */,
 				B2320BFF1D57A56000EF28AA /* CHTCollectionViewWaterfallLayout */,
 				B27003331D46E3A100B3D70C /* ViewControllers */,
 				B27003221D46E16E00B3D70C /* SideMenu */,
@@ -188,9 +195,11 @@
 		B22128861D52C5A1002D854F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B2320C021D57AFA900EF28AA /* Entities */,
 				B22128871D52C5E7002D854F /* Repositories */,
 			);
 			name = Domain;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B22128871D52C5E7002D854F /* Repositories */ = {
@@ -210,6 +219,23 @@
 				B2320C001D57A56F00EF28AA /* CHTCollectionViewWaterfallLayout.swift */,
 			);
 			name = CHTCollectionViewWaterfallLayout;
+			sourceTree = "<group>";
+		};
+		B2320C021D57AFA900EF28AA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B2320C031D57AFC800EF28AA /* ImageEntity.swift */,
+				B2320C051D57B02700EF28AA /* TagEntity.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		B2320C071D57B33C00EF28AA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B2320C081D57B36300EF28AA /* StringExtensions.swift */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		B27003221D46E16E00B3D70C /* SideMenu */ = {
@@ -379,7 +405,10 @@
 				B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */,
 				B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */,
 				B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */,
+				B2320C041D57AFC800EF28AA /* ImageEntity.swift in Sources */,
 				B221288B1D52CBBB002D854F /* ImageRepository.swift in Sources */,
+				B2320C061D57B02700EF28AA /* TagEntity.swift in Sources */,
+				B2320C091D57B36300EF28AA /* StringExtensions.swift in Sources */,
 				B21F81651D45C21E008E764C /* AppDelegate.swift in Sources */,
 				B2320C011D57A56F00EF28AA /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 			);

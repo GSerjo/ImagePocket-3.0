@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-final class ViewController: UIViewController {
+final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private struct AppTitle {
         static let Root = "Image Pocket"
