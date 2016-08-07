@@ -35,11 +35,14 @@ final class ViewController: UIViewController {
     @IBOutlet var seletImageButton: UIBarButtonItem!
     @IBOutlet var shareImageButton: UIBarButtonItem!
     @IBOutlet var removeImageButton: UIBarButtonItem!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureToolbar()
+        
+        setupToolbar()
+        setupCollectionView()
+        
         viewMode = .Read
         
         try! DataStore.sharedInstance.createTables()
@@ -60,8 +63,18 @@ final class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    private func setupCollectionView(){
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.minimumColumnSpacing = 1.0
+        layout.minimumInteritemSpacing = 1.0
+        
+        self.collectionView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        self.collectionView.alwaysBounceVertical = true
+        self.collectionView.collectionViewLayout = layout
+    }
     
-    private func configureToolbar(){
+    
+    private func setupToolbar(){
         openMenuButton = MMDrawerBarButtonItem(target: self, action: #selector(onOpenMenuClicked))
         
         tagButton = UIBarButtonItem(title: "Tag", style: .Plain, target: self, action: #selector(onTagClicked))
@@ -82,10 +95,34 @@ final class ViewController: UIViewController {
     }
     
     private func requestAuthorizationHandler(status: PHAuthorizationStatus) {
+        
+        if(status == PHAuthorizationStatus.Authorized){
+            executeInMainQueue{self.startApp()}
+        }
+        else {
+            
+            let alertController = UIAlertController(title: "Warning", message: "The Photo permission was not authorized. Please enable it in Settings to continue", preferredStyle: .Alert)
+            let settingsAction = UIAlertAction(title: "Open Settings", style: .Default, handler: {_ in
+                
+                if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString){
+                    UIApplication.sharedApplication().openURL(appSettings)
+                }
+            })
+            
+            alertController.addAction(settingsAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     private func startApp() {
         
+    }
+    
+    private func executeInMainQueue(action: ()-> Void){
+        dispatch_async(dispatch_get_main_queue(), action)
     }
     
     private func setReadMode() {
@@ -98,9 +135,8 @@ final class ViewController: UIViewController {
     
     private func setSelectMode() {
         title = AppTitle.Select
-        removeImageButton.enabled = true
-        shareImageButton.enabled = true
         navigationItem.leftBarButtonItem = tagButton
+        navigationItem.leftBarButtonItem?.enabled = false
         navigationItem.rightBarButtonItem = cancelSelectModeButton
     }
     

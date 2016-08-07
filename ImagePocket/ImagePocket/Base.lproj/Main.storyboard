@@ -66,6 +66,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="gGE-Wd-cM0" id="3eE-U2-38C"/>
                         <outlet property="removeImageButton" destination="5vn-Qh-4rZ" id="sv1-Xj-7Oz"/>
                         <outlet property="seletImageButton" destination="3VF-62-MyQ" id="ZSg-hD-wJi"/>
                         <outlet property="shareImageButton" destination="m6e-l1-eVk" id="Uob-1x-7uG"/>
