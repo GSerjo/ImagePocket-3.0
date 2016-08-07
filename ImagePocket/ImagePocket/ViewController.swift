@@ -10,20 +10,38 @@ import UIKit
 import Photos
 
 final class ViewController: UIViewController {
-
-    private let rootTitle = "Image Pocket"
+    
+    private struct AppTitle {
+        static let Root = "Image Pocket"
+        static let Select = "Select Images"
+    }
+    
+    private var viewMode = ViewMode.Read {
+        didSet {
+            switch viewMode {
+            case .Read:
+                setReadMode()
+            case .Select:
+                setSelectMode()
+            }
+            
+        }
+    }
     
     private var openMenuButton: UIBarButtonItem!
+    private var cancelSelectModeButton: UIBarButtonItem!
+    private var tagButton: UIBarButtonItem!
     
-    @IBOutlet weak var seletImageButton: UIBarButtonItem!
-    @IBOutlet weak var shareImageButton: UIBarButtonItem!
-    @IBOutlet weak var removeImageButton: UIBarButtonItem!
+    @IBOutlet var seletImageButton: UIBarButtonItem!
+    @IBOutlet var shareImageButton: UIBarButtonItem!
+    @IBOutlet var removeImageButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = rootTitle
+
         configureToolbar()
+        viewMode = .Read
+        
         try! DataStore.sharedInstance.createTables()
         
         if(PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.Authorized){
@@ -35,7 +53,7 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func onSelectClicked(sender: UIBarButtonItem) {
-        
+        viewMode = .Select
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,8 +63,9 @@ final class ViewController: UIViewController {
     
     private func configureToolbar(){
         openMenuButton = MMDrawerBarButtonItem(target: self, action: #selector(onOpenMenuClicked))
-        navigationItem.leftBarButtonItem = openMenuButton
-
+        
+        tagButton = UIBarButtonItem(title: "Tag", style: .Plain, target: self, action: #selector(onTagClicked))
+        cancelSelectModeButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(onCancelSelectModeClicked))
     }
     
     @objc private func onOpenMenuClicked(){
@@ -54,11 +73,40 @@ final class ViewController: UIViewController {
         appDelegate.centerContainer.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
     
+    @objc private func onTagClicked() {
+        
+    }
+    
+    @objc private func onCancelSelectModeClicked() {
+        viewMode = .Read
+    }
+    
     private func requestAuthorizationHandler(status: PHAuthorizationStatus) {
     }
     
     private func startApp() {
         
+    }
+    
+    private func setReadMode() {
+        title = AppTitle.Root
+        removeImageButton.enabled = false
+        shareImageButton.enabled = false
+        navigationItem.leftBarButtonItem = openMenuButton
+        navigationItem.rightBarButtonItem = seletImageButton
+    }
+    
+    private func setSelectMode() {
+        title = AppTitle.Select
+        removeImageButton.enabled = true
+        shareImageButton.enabled = true
+        navigationItem.leftBarButtonItem = tagButton
+        navigationItem.rightBarButtonItem = cancelSelectModeButton
+    }
+    
+    private enum ViewMode {
+        case Read
+        case Select
     }
 }
 
