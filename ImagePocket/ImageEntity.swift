@@ -8,12 +8,16 @@
 
 import Foundation
 
-final class ImageEntity{
+struct ImageEntity{
     
-    private(set) var tags: [TagEntity] = []
+    private(set) var tags = [TagEntity]()
     var localIdentifier = String.empty
     
-    func addTag(tag: TagEntity){
+    init(localIdentifier: String){
+        self.localIdentifier = localIdentifier
+    }
+    
+    mutating func addTag(tag: TagEntity){
         if(containsTag(tag)){
             return
         }

@@ -9,7 +9,9 @@
 import UIKit
 import Photos
 
-final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
+    
+    private var imageCache: ImageCache!
     
     private struct AppTitle {
         static let Root = "Image Pocket"
@@ -28,6 +30,9 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    private var filteredImages = [ImageEntity]()
+    private var currentTag = TagEntity.all
+    
     private var openMenuButton: UIBarButtonItem!
     private var cancelSelectModeButton: UIBarButtonItem!
     private var tagButton: UIBarButtonItem!
@@ -37,8 +42,14 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet var removeImageButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    let model = Model()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        model.buildDataSource()
         
         setupToolbar()
         setupCollectionView()
@@ -71,6 +82,10 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
         self.collectionView.alwaysBounceVertical = true
         self.collectionView.collectionViewLayout = layout
+        
+        //collectionView.registerClass(ImagePreviewCell.self, forCellWithReuseIdentifier: "ImagePreviewCell")
+        let viewNib = UINib(nibName: "ImagePreviewCell", bundle: nil)
+        collectionView.registerNib(viewNib, forCellWithReuseIdentifier: "ImagePreviewCell")
     }
     
     
@@ -92,6 +107,29 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @objc private func onCancelSelectModeClicked() {
         viewMode = .Read
+    }
+    
+    // UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return filteredImages.count
+        //return model.images.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImagePreviewCell", forIndexPath: indexPath) as! ImagePreviewCell
+        let entity = filteredImages[indexPath.item]
+        guard let asset = ImageCache.sharedInctace[entity.localIdentifier] else {
+            return cell
+        }
+        //ImageLoader.sharedInstance.updateImage(asset) { cell.imageView.image = $0 }
+        cell.setImage(asset)
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        //let imageSize = model.images[indexPath.row].size
+        //return imageSize
+        return CGSize(width: 600, height: 600)
     }
     
     private func requestAuthorizationHandler(status: PHAuthorizationStatus) {
@@ -118,7 +156,8 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     private func startApp() {
-        
+        imageCache = ImageCache.sharedInctace
+        filteredImages = imageCache.getImages(currentTag)
     }
     
     private func executeInMainQueue(action: ()-> Void){
