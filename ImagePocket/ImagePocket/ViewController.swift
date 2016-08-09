@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
+final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var imageCache: ImageCache!
     
@@ -30,8 +30,6 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    private var filteredImages = [ImageEntity]()
-    private var currentTag = TagEntity.all
     
     private var openMenuButton: UIBarButtonItem!
     private var cancelSelectModeButton: UIBarButtonItem!
@@ -75,17 +73,24 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     private func setupCollectionView(){
-        let layout = CHTCollectionViewWaterfallLayout()
+        /*
+         let layout = CHTCollectionViewWaterfallLayout()
         layout.minimumColumnSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
+        */
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 2
+        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        layout.itemSize = CGSize(width: 160, height: 160)
         
         self.collectionView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
         self.collectionView.alwaysBounceVertical = true
         self.collectionView.collectionViewLayout = layout
         
         //collectionView.registerClass(ImagePreviewCell.self, forCellWithReuseIdentifier: "ImagePreviewCell")
-        let viewNib = UINib(nibName: "ImagePreviewCell", bundle: nil)
-        collectionView.registerNib(viewNib, forCellWithReuseIdentifier: "ImagePreviewCell")
+        //let viewNib = UINib(nibName: "ImagePreviewCell", bundle: nil)
+        //collectionView.registerNib(viewNib, forCellWithReuseIdentifier: "ImagePreviewCell")
     }
     
     
@@ -109,15 +114,15 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         viewMode = .Read
     }
     
-    // UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return filteredImages.count
+        return imageCache.filteredImages.count
         //return model.images.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImagePreviewCell", forIndexPath: indexPath) as! ImagePreviewCell
-        let entity = filteredImages[indexPath.item]
+        let entity = imageCache.filteredImages[indexPath.item]
         guard let asset = ImageCache.sharedInctace[entity.localIdentifier] else {
             return cell
         }
@@ -126,12 +131,12 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        //let imageSize = model.images[indexPath.row].size
-        //return imageSize
-        return CGSize(width: 600, height: 600)
+    // MARK: UICollectionViewDelegate
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+        navigationController?.pushViewController(PhotoViewController(), animated: false)
     }
     
+   
     private func requestAuthorizationHandler(status: PHAuthorizationStatus) {
         
         if(status == PHAuthorizationStatus.Authorized){
@@ -157,7 +162,7 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     private func startApp() {
         imageCache = ImageCache.sharedInctace
-        filteredImages = imageCache.getImages(currentTag)
+        imageCache.updateFilteredImages()
     }
     
     private func executeInMainQueue(action: ()-> Void){

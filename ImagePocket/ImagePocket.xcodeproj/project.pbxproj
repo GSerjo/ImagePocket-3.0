@@ -26,13 +26,13 @@
 		B2320C151D57F65900EF28AA /* SequenceTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C141D57F65900EF28AA /* SequenceTypeExtensions.swift */; };
 		B2320C171D58053300EF28AA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C161D58053300EF28AA /* Model.swift */; };
 		B2320C1C1D580EF100EF28AA /* ImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C1A1D580EF100EF28AA /* ImagePreviewCell.swift */; };
-		B2320C1D1D580EF100EF28AA /* ImagePreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2320C1B1D580EF100EF28AA /* ImagePreviewCell.xib */; };
 		B2320C1F1D5825A700EF28AA /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2320C1E1D5825A700EF28AA /* ImageLoader.swift */; };
 		B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27003231D46E20A00B3D70C /* LeftSideViewController.swift */; };
 		B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003271D46E26A00B3D70C /* MMDrawerBarButtonItem.m */; };
 		B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27003291D46E26A00B3D70C /* MMDrawerController.m */; };
 		B27003311D46E26A00B3D70C /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = B270032C1D46E26A00B3D70C /* MMDrawerVisualState.m */; };
 		B27003321D46E26A00B3D70C /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B270032E1D46E26A00B3D70C /* UIViewController+MMDrawerController.m */; };
+		B2C5045E1D59947E006EAE04 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C5045D1D59947E006EAE04 /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +129,6 @@
 		B2320C141D57F65900EF28AA /* SequenceTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceTypeExtensions.swift; sourceTree = "<group>"; };
 		B2320C161D58053300EF28AA /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B2320C1A1D580EF100EF28AA /* ImagePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewCell.swift; sourceTree = "<group>"; };
-		B2320C1B1D580EF100EF28AA /* ImagePreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePreviewCell.xib; sourceTree = "<group>"; };
 		B2320C1E1D5825A700EF28AA /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		B27003231D46E20A00B3D70C /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
 		B27003251D46E26900B3D70C /* ImagePocket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagePocket-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		B270032C1D46E26A00B3D70C /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
 		B270032D1D46E26A00B3D70C /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		B270032E1D46E26A00B3D70C /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		B2C5045D1D59947E006EAE04 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				B2320C1A1D580EF100EF28AA /* ImagePreviewCell.swift */,
-				B2320C1B1D580EF100EF28AA /* ImagePreviewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -292,6 +291,7 @@
 			children = (
 				B21F81661D45C21E008E764C /* ViewController.swift */,
 				B27003231D46E20A00B3D70C /* LeftSideViewController.swift */,
+				B2C5045D1D59947E006EAE04 /* PhotoViewController.swift */,
 				B2320C0A1D57DBDC00EF28AA /* Cells */,
 				B2320C1E1D5825A700EF28AA /* ImageLoader.swift */,
 			);
@@ -419,7 +419,6 @@
 			files = (
 				B21F816F1D45C21E008E764C /* LaunchScreen.storyboard in Resources */,
 				B21F816C1D45C21E008E764C /* Assets.xcassets in Resources */,
-				B2320C1D1D580EF100EF28AA /* ImagePreviewCell.xib in Resources */,
 				B21F816A1D45C21E008E764C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +441,7 @@
 				B27003301D46E26A00B3D70C /* MMDrawerController.m in Sources */,
 				B270032F1D46E26A00B3D70C /* MMDrawerBarButtonItem.m in Sources */,
 				B2320C151D57F65900EF28AA /* SequenceTypeExtensions.swift in Sources */,
+				B2C5045E1D59947E006EAE04 /* PhotoViewController.swift in Sources */,
 				B27003241D46E20A00B3D70C /* LeftSideViewController.swift in Sources */,
 				B2320C041D57AFC800EF28AA /* ImageEntity.swift in Sources */,
 				B2320C1C1D580EF100EF28AA /* ImagePreviewCell.swift in Sources */,

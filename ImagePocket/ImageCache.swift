@@ -15,6 +15,8 @@ final class ImageCache {
     
     private var actualImages = [String:ImageEntity]()
     private var assets = [String: PHAsset]()
+    var currentTag = TagEntity.all
+    private(set) var filteredImages = [ImageEntity]()
 
     private init(){
         let fetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
@@ -22,8 +24,8 @@ final class ImageCache {
         actualImages = assets.values.map(createImage).toDictionary{$0.localIdentifier}
     }
     
-    func getImages(tag: TagEntity) -> [ImageEntity]{
-        return Array(actualImages.values)
+    func updateFilteredImages(tag: TagEntity = TagEntity.all) {
+        filteredImages = Array(actualImages.values)
     }
     
     subscript(localIdentifier: String) -> PHAsset?{
