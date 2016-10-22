@@ -333,6 +333,7 @@
 					B21F81601D45C21D008E764C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = NAXXC43K8R;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -582,6 +583,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ImagePocket/ImagePocket-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -597,6 +599,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.nelibur.ImagePocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ImagePocket/ImagePocket-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

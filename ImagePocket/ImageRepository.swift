@@ -11,8 +11,8 @@ import SQLite
 
 final class ImageRepository {
     
-    private static let tableName = "Image"
-    private static let table = Table(tableName)
+    fileprivate static let tableName = "Image"
+    fileprivate static let table = Table(tableName)
     
     
     static func createTable() throws {
@@ -28,7 +28,7 @@ final class ImageRepository {
         try DataStore.sharedInstance.executeQuery(indexQuery)
     }
     
-    private struct Columns {
+    fileprivate struct Columns {
         static let id = Expression<Int64>("id")
         static let localIdentifier = Expression<String>("localIdentifier")
     }

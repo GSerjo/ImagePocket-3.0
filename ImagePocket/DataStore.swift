@@ -12,14 +12,14 @@ import SQLite
 final class DataStore {
     static let sharedInstance = DataStore()
     
-    private let connection: Connection?
+    fileprivate let connection: Connection?
     
-    private init(){
+    fileprivate init(){
         var path = "NeliburImagePocketDB.sqlite"
         
-        if let dirs: [NSString] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as [NSString] {
+        if let dirs: [NSString] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true) as [NSString] {
             let dir = dirs[0]
-            path = dir.stringByAppendingPathComponent("NeliburImagePocketDB.sqlite");
+            path = dir.appendingPathComponent("NeliburImagePocketDB.sqlite");
             print(path)
         }
         
@@ -30,9 +30,9 @@ final class DataStore {
         }
     }
     
-    func executeQuery(query: String) throws {
+    func executeQuery(_ query: String) throws {
         guard let connection =  self.connection else {
-            throw DataAccessError.ConnectionError
+            throw DataAccessError.connectionError
         }
         try connection.run(query)
     }

@@ -10,21 +10,21 @@ import Foundation
 
 struct ImageEntity{
     
-    private(set) var tags = [TagEntity]()
+    fileprivate(set) var tags = [TagEntity]()
     var localIdentifier = String.empty
     
     init(localIdentifier: String){
         self.localIdentifier = localIdentifier
     }
     
-    mutating func addTag(tag: TagEntity){
+    mutating func addTag(_ tag: TagEntity){
         if(containsTag(tag)){
             return
         }
         tags.append(tag)
     }
     
-    func containsTag(tag: TagEntity) -> Bool{
+    func containsTag(_ tag: TagEntity) -> Bool{
         return tags.contains(tag)
     }
 }

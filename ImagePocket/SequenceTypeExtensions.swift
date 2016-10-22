@@ -8,9 +8,9 @@
 
 import Foundation
 
-public extension SequenceType{
+public extension Sequence{
     
-    func toDictionary<Key: Hashable, Value>(fn: Value -> Key) -> [Key: Value]{
+    func toDictionary<Key: Hashable, Value>(_ fn: (Value) -> Key) -> [Key: Value]{
         var result = [Key: Value]()
         
         for x in self {

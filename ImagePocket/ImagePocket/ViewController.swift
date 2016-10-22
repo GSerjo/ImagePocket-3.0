@@ -11,19 +11,19 @@ import Photos
 
 final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    private var imageCache: ImageCache!
+    fileprivate var imageCache: ImageCache!
     
-    private struct AppTitle {
+    fileprivate struct AppTitle {
         static let Root = "Image Pocket"
         static let Select = "Select Images"
     }
     
-    private var viewMode = ViewMode.Read {
+    fileprivate var viewMode = ViewMode.read {
         didSet {
             switch viewMode {
-            case .Read:
+            case .read:
                 setReadMode()
-            case .Select:
+            case .select:
                 setSelectMode()
             }
             
@@ -31,9 +31,9 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     
-    private var openMenuButton: UIBarButtonItem!
-    private var cancelSelectModeButton: UIBarButtonItem!
-    private var tagButton: UIBarButtonItem!
+    fileprivate var openMenuButton: UIBarButtonItem!
+    fileprivate var cancelSelectModeButton: UIBarButtonItem!
+    fileprivate var tagButton: UIBarButtonItem!
     
     @IBOutlet var seletImageButton: UIBarButtonItem!
     @IBOutlet var shareImageButton: UIBarButtonItem!
@@ -52,11 +52,11 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         setupToolbar()
         setupCollectionView()
         
-        viewMode = .Read
+        viewMode = .read
         
         try! DataStore.sharedInstance.createTables()
         
-        if(PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.Authorized){
+        if(PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized){
             startApp()
         }
         else {
@@ -64,15 +64,15 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    @IBAction func onSelectClicked(sender: UIBarButtonItem) {
-        viewMode = .Select
+    @IBAction func onSelectClicked(_ sender: UIBarButtonItem) {
+        viewMode = .select
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func setupCollectionView(){
+    fileprivate func setupCollectionView(){
         /*
          let layout = CHTCollectionViewWaterfallLayout()
         layout.minimumColumnSpacing = 1.0
@@ -84,7 +84,7 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
         layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         layout.itemSize = CGSize(width: 160, height: 160)
         
-        self.collectionView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        self.collectionView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
         self.collectionView.alwaysBounceVertical = true
         self.collectionView.collectionViewLayout = layout
         
@@ -94,35 +94,35 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     
-    private func setupToolbar(){
+    fileprivate func setupToolbar(){
         openMenuButton = MMDrawerBarButtonItem(target: self, action: #selector(onOpenMenuClicked))
         
-        tagButton = UIBarButtonItem(title: "Tag", style: .Plain, target: self, action: #selector(onTagClicked))
-        cancelSelectModeButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(onCancelSelectModeClicked))
+        tagButton = UIBarButtonItem(title: "Tag", style: .plain, target: self, action: #selector(onTagClicked))
+        cancelSelectModeButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelSelectModeClicked))
     }
     
-    @objc private func onOpenMenuClicked(){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.centerContainer.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+    @objc fileprivate func onOpenMenuClicked(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.centerContainer.toggle(MMDrawerSide.left, animated: true, completion: nil)
     }
     
-    @objc private func onTagClicked() {
+    @objc fileprivate func onTagClicked() {
         
     }
     
-    @objc private func onCancelSelectModeClicked() {
-        viewMode = .Read
+    @objc fileprivate func onCancelSelectModeClicked() {
+        viewMode = .read
     }
     
     // MARK: UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return imageCache.filteredImages.count
         //return model.images.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImagePreviewCell", forIndexPath: indexPath) as! ImagePreviewCell
-        let entity = imageCache.filteredImages[indexPath.item]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePreviewCell", for: indexPath) as! ImagePreviewCell
+        let entity = imageCache.filteredImages[(indexPath as NSIndexPath).item]
         guard let asset = ImageCache.sharedInctace[entity.localIdentifier] else {
             return cell
         }
@@ -132,61 +132,61 @@ final class ViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     // MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         navigationController?.pushViewController(PhotoViewController(), animated: false)
     }
     
    
-    private func requestAuthorizationHandler(status: PHAuthorizationStatus) {
+    fileprivate func requestAuthorizationHandler(_ status: PHAuthorizationStatus) {
         
-        if(status == PHAuthorizationStatus.Authorized){
+        if(status == PHAuthorizationStatus.authorized){
             executeInMainQueue{self.startApp()}
         }
         else {
             
-            let alertController = UIAlertController(title: "Warning", message: "The Photo permission was not authorized. Please enable it in Settings to continue", preferredStyle: .Alert)
-            let settingsAction = UIAlertAction(title: "Open Settings", style: .Default, handler: {_ in
+            let alertController = UIAlertController(title: "Warning", message: "The Photo permission was not authorized. Please enable it in Settings to continue", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Open Settings", style: .default, handler: {_ in
                 
-                if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString){
-                    UIApplication.sharedApplication().openURL(appSettings)
+                if let appSettings = URL(string: UIApplicationOpenSettingsURLString){
+                    UIApplication.shared.openURL(appSettings)
                 }
             })
             
             alertController.addAction(settingsAction)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
     
-    private func startApp() {
+    fileprivate func startApp() {
         imageCache = ImageCache.sharedInctace
         imageCache.updateFilteredImages()
     }
     
-    private func executeInMainQueue(action: ()-> Void){
-        dispatch_async(dispatch_get_main_queue(), action)
+    fileprivate func executeInMainQueue(_ action: @escaping ()-> Void){
+        DispatchQueue.main.async(execute: action)
     }
     
-    private func setReadMode() {
+    fileprivate func setReadMode() {
         title = AppTitle.Root
-        removeImageButton.enabled = false
-        shareImageButton.enabled = false
+        removeImageButton.isEnabled = false
+        shareImageButton.isEnabled = false
         navigationItem.leftBarButtonItem = openMenuButton
         navigationItem.rightBarButtonItem = seletImageButton
     }
     
-    private func setSelectMode() {
+    fileprivate func setSelectMode() {
         title = AppTitle.Select
         navigationItem.leftBarButtonItem = tagButton
-        navigationItem.leftBarButtonItem?.enabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem = cancelSelectModeButton
     }
     
-    private enum ViewMode {
-        case Read
-        case Select
+    fileprivate enum ViewMode {
+        case read
+        case select
     }
 }
 

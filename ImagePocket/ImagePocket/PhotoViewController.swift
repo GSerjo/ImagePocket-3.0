@@ -13,7 +13,7 @@ final class PhotoViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tabButton = UIBarButtonItem(title: "Tag", style: .Plain, target: self, action: #selector(onTagClicked))
+        let tabButton = UIBarButtonItem(title: "Tag", style: .plain, target: self, action: #selector(onTagClicked))
         navigationItem.rightBarButtonItem  = tabButton
         
         // Do any additional setup after loading the view.

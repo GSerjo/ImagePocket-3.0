@@ -23,14 +23,14 @@ class ImagePreviewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    private var requestId: PHImageRequestID?
+    fileprivate var requestId: PHImageRequestID?
     
-    func setImage(asset: PHAsset){
+    func setImage(_ asset: PHAsset){
         
         let requestOptions = PHImageRequestOptions()
         //requestOptions.deliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat
         //requestOptions.resizeMode = PHImageRequestOptionsResizeMode.Fast
-        requestOptions.networkAccessAllowed = true
+        requestOptions.isNetworkAccessAllowed = true
         //requestOptions.synchronous = false
         /*requestOptions.progressHandler = { [weak self]
          (value: Double, _: NSError?, _ : UnsafeMutablePointer<ObjCBool>, _ : [NSObject : AnyObject]?) in
@@ -39,7 +39,7 @@ class ImagePreviewCell: UICollectionViewCell {
         
         //let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
         
-        requestId = PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: imageView.frame.size, contentMode: .AspectFill, options: requestOptions){ [weak self](image, options) in
+        requestId = PHImageManager.default().requestImage(for: asset, targetSize: imageView.frame.size, contentMode: .aspectFill, options: requestOptions){ [weak self](image, options) in
             self!.imageView.image = image
             self!.requestId = nil
             self!.activityIndicator.stopAnimating()
@@ -48,7 +48,7 @@ class ImagePreviewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         if let requestId = self.requestId {
-            PHImageManager.defaultManager().cancelImageRequest(requestId)
+            PHImageManager.default().cancelImageRequest(requestId)
         }
         self.activityIndicator.stopAnimating()
         self.imageView.image = nil

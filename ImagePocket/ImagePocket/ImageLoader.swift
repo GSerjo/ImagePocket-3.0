@@ -14,19 +14,19 @@ final class ImageLoader {
     
     static let sharedInstance = ImageLoader()
     
-    private let imageManager = PHImageManager.defaultManager()
+    fileprivate let imageManager = PHImageManager.default()
     let requestOptions = PHImageRequestOptions()
     let returnImageSize = CGSize(width: 600, height: 600)
     
-    private init(){
-        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat
-        requestOptions.resizeMode = PHImageRequestOptionsResizeMode.Exact
-        requestOptions.networkAccessAllowed = true
+    fileprivate init(){
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
+        requestOptions.resizeMode = PHImageRequestOptionsResizeMode.exact
+        requestOptions.isNetworkAccessAllowed = true
     }
     
-    func updateImage(asset: PHAsset, action: (image: UIImage?) -> Void){
-        imageManager.requestImageForAsset(asset, targetSize: returnImageSize, contentMode: .AspectFill, options: requestOptions){ (image, _) in
-                action(image: image)
+    func updateImage(_ asset: PHAsset, action: @escaping (_ image: UIImage?) -> Void){
+        imageManager.requestImage(for: asset, targetSize: returnImageSize, contentMode: .aspectFill, options: requestOptions){ (image, _) in
+                action(image)
         }
     }
 }

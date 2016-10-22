@@ -11,8 +11,8 @@ import SQLite
 
 final class TagRepository {
     
-    private static let tableName = "Tag"
-    private static let table = Table(tableName)
+    fileprivate static let tableName = "Tag"
+    fileprivate static let table = Table(tableName)
     
     static func createTable() throws {
         
@@ -28,7 +28,7 @@ final class TagRepository {
     }
     
     
-    private struct Columns {
+    fileprivate struct Columns {
         static let id = Expression<Int64>("id")
         static let name = Expression<String>("name")
     }    

@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum DataAccessError: ErrorType {
-    case ConnectionError
-    case InsertError
-    case DeleteError
+enum DataAccessError: Error {
+    case connectionError
+    case insertError
+    case deleteError
 }
